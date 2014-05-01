@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int cycleLength(int n) {
+int cycleLength(unsigned int n) {
   int i=0;
   while(n!=1) {
     if(n%2==1) {
@@ -17,7 +17,7 @@ int cycleLength(int n) {
 
 int maxLength(int i, int j) {
   int max = 0;
-  for (int x=i;x<=j;++x) {
+  for(int x=i; x<=j; ++x) {
     int m = cycleLength(x);
     if(m>max) {
       max = m;
