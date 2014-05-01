@@ -24,9 +24,11 @@ int cycleLength(unsigned int n) {
     path.push_back(n);
   }
 
-  for(unsigned int i=0; i<path.size(); ++i) {
-    if(path[i] < MAX_CACHE)
-      cache[path[i]] = i+1;
+  int size = path.size();
+  for(int i=1; i<=size; ++i) {
+    if(path[size-i] < MAX_CACHE) {
+      cache[path[size-i]] = i;
+    }
   }
 
   return path.size();
