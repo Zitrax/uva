@@ -16,6 +16,11 @@ int cycleLength(unsigned int n) {
 }
 
 int maxLength(int i, int j) {
+  if( i > j ) {
+    int tmp = i;
+    i = j;
+    j = tmp;
+  }
   int max = 0;
   for(int x=i; x<=j; ++x) {
     int m = cycleLength(x);
