@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -12,8 +11,9 @@ int cycleLength(unsigned int n) {
     return cache[n];
   }
 
-  vector<unsigned int> path;
-  path.push_back(n);
+  int p = 0;
+  unsigned int path[525]; // max for 1 000 000
+  path[p++] = n;
 
   while(n!=1) {
     if(n%2==1) {
@@ -21,17 +21,17 @@ int cycleLength(unsigned int n) {
     } else {
       n /= 2;
     }
-    path.push_back(n);
+    path[p++] = n;
   }
 
-  int size = path.size();
-  for(int i=1; i<=size; ++i) {
-    if(path[size-i] < MAX_CACHE) {
-      cache[path[size-i]] = i;
+  // Cache the whole path for future calls
+  for(int i=1; i<=p; ++i) {
+    if(path[p-i] < MAX_CACHE) {
+      cache[path[p-i]] = i;
     }
   }
 
-  return path.size();
+  return p;
 }
 
 int maxLength(int i, int j) {
