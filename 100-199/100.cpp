@@ -16,6 +16,19 @@ int cycleLength(unsigned int n) {
   path[p++] = n;
 
   while(n!=1) {
+
+    if(n < MAX_CACHE && cache[n] > 0) {
+
+      // Cache the path until we hit the cache
+      for(int i=2; i<=p; ++i) {
+	if(path[p-i] < MAX_CACHE) {
+	  cache[path[p-i]] = i - 1 + cache[n];
+	}
+      }
+
+      return p - 1 + cache[n];
+    }
+
     if(n%2==1) {
       n = 3*n+1;
     } else {
